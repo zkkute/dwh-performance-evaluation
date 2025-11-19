@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Данные и логи (не коммитим терабайты!)
+data/generated/
+data/logs/
+*.csv
+*.parquet
+*.gz
+
+# Docker volumes
+volumes/
+
+# IDE
+.idea/
+.vscode/
