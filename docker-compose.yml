@@ -1,13 +1,12 @@
-version: '3.8'
-
 services:
   clickhouse:
     image: clickhouse/clickhouse-server:24.8
     container_name: clickhouse
+    restart: unless-stopped
     ports:
-      - "8123:8123"
-      - "9000:9000"
-      - "9363:9363"    # Prometheus metrics
+      - "8123:8123"   # HTTP
+      - "9000:9000"   # ←←← ЭТО САМОЕ ГЛАВНОЕ! Без этого не будет подключения
+      - "9363:9363"   # метрики
     volumes:
       - ./volumes/clickhouse:/var/lib/clickhouse
       - ./configs/clickhouse/config.xml:/etc/clickhouse-server/config.d/custom.xml
@@ -22,9 +21,6 @@ services:
     volumes:
       - ./configs/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./volumes/prometheus:/prometheus
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
 
   grafana:
     image: grafana/grafana:latest

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<clickhouse>
+    <prometheus>
+        <endpoint>/metrics</endpoint>
+        <port>9363</port>
+    </prometheus>
+
+    <lz4_compression>1</lz4_compression>
+    <default_compression_codec>LZ4</default_compression_codec>
+
+    <logger>
+        <level>information</level>
+    </logger>
+
+    <max_memory_usage>20000000000</max_memory_usage>
+    <max_threads>8</max_threads>
+</clickhouse>
